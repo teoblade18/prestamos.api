@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prestamos.api", "prestamos.api.csproj", "{4C2224FA-77FF-4113-BA82-3B07F1D1CDE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prestamos.api", "prestamos.api.csproj", "{B553521D-B9A5-49FD-B08E-8FF52775DA9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C2224FA-77FF-4113-BA82-3B07F1D1CDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C2224FA-77FF-4113-BA82-3B07F1D1CDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C2224FA-77FF-4113-BA82-3B07F1D1CDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C2224FA-77FF-4113-BA82-3B07F1D1CDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B553521D-B9A5-49FD-B08E-8FF52775DA9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B553521D-B9A5-49FD-B08E-8FF52775DA9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B553521D-B9A5-49FD-B08E-8FF52775DA9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B553521D-B9A5-49FD-B08E-8FF52775DA9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {42FBE1C5-FD5E-412A-B008-4E5749F5C4C0}
+		SolutionGuid = {975E35C0-16EF-45ED-996E-606F22996444}
 	EndGlobalSection
 EndGlobal
