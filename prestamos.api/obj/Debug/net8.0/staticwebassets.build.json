@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Dh4qyJQNjbFgm5yF73RLfVadfrb0dIxFHs0zOwS5DXE=",
+  "Source": "prestamos.api",
+  "BasePath": "_content/prestamos.api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
