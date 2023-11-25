@@ -19,15 +19,16 @@ public partial class ProyectoPrestamosContext : DbContext
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
-    public virtual DbSet<Interese> Intereses { get; set; }
+    public virtual DbSet<Interes> Intereses { get; set; }
 
     public virtual DbSet<Prestamista> Prestamistas { get; set; }
 
     public virtual DbSet<Prestamo> Prestamos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\Servidor_Local; DataBase=Proyecto_Prestamos;Integrated Security=True");
+    {
+
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,7 +43,7 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasColumnType("numeric(18, 0)")
                 .HasColumnName("valor");
 
-            entity.HasOne(d => d.IdPrestamoNavigation).WithMany(p => p.Abonos)
+            entity.HasOne(d => d.oPrestamo).WithMany(p => p.Abonos)
                 .HasForeignKey(d => d.IdPrestamo)
                 .HasConstraintName("FK__Abonos__idPresta__45F365D3");
         });
@@ -64,7 +65,7 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasColumnName("puntaje");
         });
 
-        modelBuilder.Entity<Interese>(entity =>
+        modelBuilder.Entity<Interes>(entity =>
         {
             entity.HasKey(e => e.IdInteres).HasName("PK__Interese__650CDE9535E1874E");
 
@@ -79,7 +80,7 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasColumnType("numeric(18, 0)")
                 .HasColumnName("valor");
 
-            entity.HasOne(d => d.IdPrestamoNavigation).WithMany(p => p.Intereses)
+            entity.HasOne(d => d.oPrestamo).WithMany(p => p.Intereses)
                 .HasForeignKey(d => d.IdPrestamo)
                 .HasConstraintName("FK__Intereses__idPre__4316F928");
         });
@@ -136,11 +137,11 @@ public partial class ProyectoPrestamosContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("tipoIntereses");
 
-            entity.HasOne(d => d.CedulaClienteNavigation).WithMany(p => p.Prestamos)
+            entity.HasOne(d => d.oCliente).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.CedulaCliente)
                 .HasConstraintName("FK__Prestamos__cedul__3F466844");
 
-            entity.HasOne(d => d.IdPrestamistaNavigation).WithMany(p => p.Prestamos)
+            entity.HasOne(d => d.oPrestamista).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.IdPrestamista)
                 .HasConstraintName("FK__Prestamos__idPre__403A8C7D");
         });

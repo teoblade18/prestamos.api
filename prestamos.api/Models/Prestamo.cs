@@ -27,9 +27,9 @@ public partial class Prestamo
 
     public virtual ICollection<Abono> Abonos { get; set; } = new List<Abono>();
 
-    public virtual Cliente? CedulaClienteNavigation { get; set; }
+    public virtual Cliente? oCliente { get; set; }
 
-    public virtual Prestamista? IdPrestamistaNavigation { get; set; }
+    public virtual Prestamista? oPrestamista { get; set; }
 
-    public virtual ICollection<Interese> Intereses { get; set; } = new List<Interese>();
+    public virtual ICollection<Interes> Intereses { get; set; } = new List<Interes>();
 }

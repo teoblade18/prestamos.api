@@ -13,5 +13,5 @@ public partial class Abono
 
     public decimal? Valor { get; set; }
 
-    public virtual Prestamo? IdPrestamoNavigation { get; set; }
+    public virtual Prestamo? oPrestamo { get; set; }
 }

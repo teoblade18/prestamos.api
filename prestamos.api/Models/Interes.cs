@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace prestamos.api.Models;
 
-public partial class Interese
+public partial class Interes
 {
     public int IdInteres { get; set; }
 
@@ -15,5 +15,5 @@ public partial class Interese
 
     public string? Tipo { get; set; }
 
-    public virtual Prestamo? IdPrestamoNavigation { get; set; }
+    public virtual Prestamo? oPrestamo { get; set; }
 }
