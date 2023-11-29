@@ -101,7 +101,7 @@ public partial class ProyectoPrestamosContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("nombre");
             entity.Property(e => e.NumeroCuenta)
-                .HasColumnType("numeric(18, 0)")
+                .IsUnicode(false)
                 .HasColumnName("numeroCuenta");
         });
 
