@@ -20,7 +20,7 @@ namespace prestamos.api.Controllers
 
         [HttpGet]
         [Route("Lista")]
-
+        [EnableCors("ReglasCors")]
         public IActionResult Lista() {
             List<Prestamista> lista = new List<Prestamista>();
 
