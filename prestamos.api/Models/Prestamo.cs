@@ -8,7 +8,7 @@ public partial class Prestamo
 {
     public int IdPrestamo { get; set; }
 
-    public string? CedulaCliente { get; set; }
+    public int? IdCliente { get; set; }
 
     public string? IdPrestamista { get; set; }
 
@@ -25,14 +25,12 @@ public partial class Prestamo
     public decimal? MontoReal { get; set; }
 
     public DateOnly? FechaPago { get; set; }
-
     [JsonIgnore]
     public virtual ICollection<Abono> Abonos { get; set; } = new List<Abono>();
 
     public virtual Cliente? oCliente { get; set; }
 
     public virtual Prestamista? oPrestamista { get; set; }
-
     [JsonIgnore]
     public virtual ICollection<Interes> Intereses { get; set; } = new List<Interes>();
 }
