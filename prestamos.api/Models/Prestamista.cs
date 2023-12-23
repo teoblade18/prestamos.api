@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-
-namespace prestamos.api.Models;
+using prestamos.api.Models;
 
 public partial class Prestamista
 {

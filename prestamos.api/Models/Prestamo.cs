@@ -25,12 +25,13 @@ public partial class Prestamo
     public decimal? MontoReal { get; set; }
 
     public DateOnly? FechaPago { get; set; }
-    [JsonIgnore]
-    public virtual ICollection<Abono> Abonos { get; set; } = new List<Abono>();
 
     public virtual Cliente? oCliente { get; set; }
 
     public virtual Prestamista? oPrestamista { get; set; }
+
     [JsonIgnore]
     public virtual ICollection<Interes> Intereses { get; set; } = new List<Interes>();
+    [JsonIgnore]
+    public virtual ICollection<Abono> Abonos { get; set; } = new List<Abono>();
 }

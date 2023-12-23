@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
-namespace prestamos.api.Models;
+using prestamos.api.Models;
 
 public partial class ProyectoPrestamosContext : DbContext
 {
@@ -167,6 +166,7 @@ public partial class ProyectoPrestamosContext : DbContext
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Contraseña).HasColumnName("contraseña");
             entity.Property(e => e.NombreUsuario).HasColumnName("nombreUsuario");
+            entity.Property(e => e.Email).HasColumnName("email");
         });
 
         OnModelCreatingPartial(modelBuilder);
