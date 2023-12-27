@@ -38,7 +38,7 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpGet]
         [Route("Obtener/{idPrestamista}")]
-        public IActionResult Obtener(String idPrestamista)
+        public IActionResult Obtener(int idPrestamista)
         {
             Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamista);
 
@@ -63,6 +63,20 @@ namespace prestamos.api.Controllers
         [Route("Guardar")]
         public IActionResult Guardar([FromBody] Prestamista objeto)
         {
+            Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.NombreUsuario == objeto.oUsuario.NombreUsuario);
+
+            if (oPrestamista != null)
+            {
+                return BadRequest("Este nombre de usuario ya existe");
+            }
+
+            oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
+
+            if (oPrestamista != null)
+            {
+                return BadRequest("Este Email ya fue registrado");
+            }
+
             try
             {
                 _prestamosContext.Prestamistas.Add(objeto);

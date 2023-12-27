@@ -10,7 +10,7 @@ public partial class Prestamo
 
     public int? IdCliente { get; set; }
 
-    public string? IdPrestamista { get; set; }
+    public int? IdPrestamista { get; set; }
 
     public DateOnly? FechaInicial { get; set; }
 

@@ -5,7 +5,7 @@ using prestamos.api.Models;
 
 public partial class Prestamista
 {
-    public string IdPrestamista { get; set; } = null!;
+    public int IdPrestamista { get; set; }
 
     public string? Nombre { get; set; }
 
