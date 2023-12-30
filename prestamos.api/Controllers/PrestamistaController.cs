@@ -61,6 +61,47 @@ namespace prestamos.api.Controllers
 
         [EnableCors("ReglasCors")]
         [HttpPost]
+        [Route("ConsultarXUsuario")]
+        public IActionResult ConsultarXUsuario([FromBody] Usuario objeto)
+        {
+            try
+            {
+                //Se valida que el nombre de usuario exista
+                Usuario oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == objeto.NombreUsuario);
+
+                if (oUsuario == null)
+                {
+                    //Se valida que el email exista
+                    oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == objeto.Email);
+
+                    if (oUsuario == null)
+                    {
+                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "No existe un prestamista con este usuario o correo" });
+                    }
+
+                    //Se valida que la contraseña sea correcta
+                    if (oUsuario.Contraseña == objeto.Contraseña)
+                    {
+                        Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
+
+                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista });
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "La contraseña es incorrecta" });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+            }
+
+            return StatusCode(StatusCodes.Status200OK, new { mensaje = "No se concluyó la consulta" });
+        }
+
+        [EnableCors("ReglasCors")]
+        [HttpPost]
         [Route("Guardar")]
         public IActionResult Guardar([FromBody] Prestamista objeto)
         {
