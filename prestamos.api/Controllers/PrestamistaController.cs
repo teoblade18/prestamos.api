@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using prestamos.api.Models;
 using Microsoft.AspNetCore.Cors;
+using Azure;
 
 namespace prestamos.api.Controllers
 {
@@ -67,14 +68,14 @@ namespace prestamos.api.Controllers
 
             if (oPrestamista != null)
             {
-                return BadRequest("Este nombre de usuario ya existe");
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Nombre usuario ya existe"});
             }
 
             oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
 
             if (oPrestamista != null)
             {
-                return BadRequest("Este Email ya fue registrado");
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Email ya existe"});
             }
 
             try
@@ -82,7 +83,9 @@ namespace prestamos.api.Controllers
                 _prestamosContext.Prestamistas.Add(objeto);
                 _prestamosContext.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista registrado"});
+                oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista registrado", response = oPrestamista });
             }
             catch (Exception ex)
             {
