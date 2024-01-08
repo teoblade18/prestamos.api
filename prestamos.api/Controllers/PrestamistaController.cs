@@ -32,7 +32,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message, response = lista });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = ex.Message, response = lista });
             }
         }
 
@@ -55,7 +55,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message, response = oPrestamista });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message, response = oPrestamista });
             }
         }
 
@@ -76,7 +76,7 @@ namespace prestamos.api.Controllers
 
                     if (oUsuario == null)
                     {
-                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "No existe un prestamista con este usuario o correo" });
+                        return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Usuario/Email no existe"});
                     }
 
                     //Se valida que la contraseña sea correcta
@@ -88,16 +88,16 @@ namespace prestamos.api.Controllers
                     }
                     else
                     {
-                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "La contraseña es incorrecta" });
+                        return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Contraseña incorrecta"});
                     }
                 }
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
 
-            return StatusCode(StatusCodes.Status200OK, new { mensaje = "No se concluyó la consulta" });
+            return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "No se concluyó la consulta" });
         }
 
         [EnableCors("ReglasCors")]
@@ -109,14 +109,14 @@ namespace prestamos.api.Controllers
 
             if (oPrestamista != null)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Nombre usuario ya existe"});
+                return BadRequest("Nombre usuario ya existe");
             }
 
             oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
 
             if (oPrestamista != null)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Email ya existe"});
+                return BadRequest("Email ya existe");
             }
 
             try
@@ -130,7 +130,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
 
@@ -159,7 +159,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
 
@@ -184,7 +184,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
     }
