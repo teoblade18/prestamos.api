@@ -10,3 +10,17 @@
 /prestamos.api/.vs/prestamos.api/v17/.suo
 /prestamos.api/.vs/ProjectEvaluation/prestamos.api.metadata.v7.bin
 /prestamos.api/.vs/ProjectEvaluation/prestamos.api.projects.v7.bin
+/prestamos.api/bin/*
+/prestamos.api/obj/*
+/prestamos.api/bin/Debug/net8.0/prestamos.api.dll
+/prestamos.api/bin/Debug/net8.0/prestamos.api.exe
+/prestamos.api/bin/Debug/net8.0/prestamos.api.pdb
+/prestamos.api/obj/Debug/net8.0/ref/prestamos.api.dll
+/prestamos.api/obj/Debug/net8.0/refint/prestamos.api.dll
+/prestamos.api/obj/Debug/net8.0/apphost.exe
+/prestamos.api/obj/Debug/net8.0/prestamos.api.AssemblyInfo.cs
+/prestamos.api/obj/Debug/net8.0/prestamos.api.AssemblyInfoInputs.cache
+/prestamos.api/obj/Debug/net8.0/prestamos.api.csproj.CoreCompileInputs.cache
+/prestamos.api/obj/Debug/net8.0/prestamos.api.dll
+/prestamos.api/obj/Debug/net8.0/prestamos.api.pdb
+/prestamos.api/obj/Debug/net8.0/prestamos.api.sourcelink.json

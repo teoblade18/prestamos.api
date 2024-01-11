@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using prestamos.api.Models;
 using Microsoft.AspNetCore.Cors;
 using Azure;
+using prestamos.api.Util;
 
 namespace prestamos.api.Controllers
 {
