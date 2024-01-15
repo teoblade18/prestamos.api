@@ -67,6 +67,10 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasColumnType("numeric(18, 0)")
                 .HasColumnName("puntaje");
 
+            entity.Property(e => e.MaxPrestar)
+                .HasColumnType("numeric(18, 0)")
+                .HasColumnName("maxPrestar");
+
             entity.HasOne(d => d.oPrestamista).WithMany(p => p.Clientes)
                 .HasForeignKey(d => d.IdPrestamista)
                 .OnDelete(DeleteBehavior.ClientSetNull)

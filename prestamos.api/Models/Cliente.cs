@@ -14,6 +14,8 @@ public partial class Cliente
 
     public decimal? Puntaje { get; set; }
 
+    public decimal? MaxPrestar { get; set; }
+
     public int? IdPrestamista { get; set; }
 
     public virtual Prestamista? oPrestamista { get; set; }

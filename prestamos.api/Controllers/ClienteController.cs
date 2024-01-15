@@ -35,5 +35,53 @@ namespace prestamos.api.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message, response = lista });
             }
         }
+
+        [EnableCors("ReglasCors")]
+        [HttpPost]
+        [Route("Guardar")]
+        public IActionResult Guardar([FromBody] Cliente objeto)
+        {
+            try
+            {
+                Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(objeto.IdPrestamista);
+
+                objeto.oPrestamista = oPrestamista;
+
+                _prestamosContext.Clientes.Add(objeto);
+                _prestamosContext.SaveChanges();
+
+                Cliente oCliente = _prestamosContext.Clientes.Find(objeto.IdCliente);
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Cliente registrado", response = oCliente });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
+
+        [EnableCors("ReglasCors")]
+        [HttpGet]
+        [Route("ObtenerClientesXPrestamista/{idPrestamista}")]
+        public IActionResult ObtenerClientesXPrestamista(int idPrestamista)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            try
+            {
+                clientes = _prestamosContext.Clientes.Where(c => c.IdPrestamista == idPrestamista).ToList();
+
+                if(clientes.Count > 0)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = clientes });
+                }
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista sin clientes" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
     }
 }
