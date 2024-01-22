@@ -83,5 +83,30 @@ namespace prestamos.api.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
+
+        [EnableCors("ReglasCors")]
+        [HttpDelete]
+        [Route("Eliminar/{idCliente}")]
+        public IActionResult Eliminar(int idCliente)
+        {
+            Cliente oCliente = _prestamosContext.Clientes.Find(idCliente);
+
+            if (oCliente == null)
+            {
+                return BadRequest("Este cliente no existe");
+            }
+
+            try
+            {
+                _prestamosContext.Clientes.Remove(oCliente);
+                _prestamosContext.SaveChanges();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
     }
 }

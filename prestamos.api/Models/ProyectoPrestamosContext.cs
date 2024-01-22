@@ -66,10 +66,13 @@ public partial class ProyectoPrestamosContext : DbContext
             entity.Property(e => e.Puntaje)
                 .HasColumnType("numeric(18, 0)")
                 .HasColumnName("puntaje");
-
             entity.Property(e => e.MaxPrestar)
                 .HasColumnType("numeric(18, 0)")
                 .HasColumnName("maxPrestar");
+            entity.Property(e => e.NumeroCuenta)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("numeroCuenta");
 
             entity.HasOne(d => d.oPrestamista).WithMany(p => p.Clientes)
                 .HasForeignKey(d => d.IdPrestamista)
