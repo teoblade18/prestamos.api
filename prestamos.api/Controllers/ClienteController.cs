@@ -69,7 +69,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                clientes = _prestamosContext.Clientes.Where(c => c.IdPrestamista == idPrestamista).ToList();
+                clientes = _prestamosContext.Clientes.Where(c => c.IdPrestamista == idPrestamista).OrderBy(c => c.Nombre).ToList();
 
                 if(clientes.Count > 0)
                 {
@@ -77,6 +77,35 @@ namespace prestamos.api.Controllers
                 }
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista sin clientes" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
+
+        [EnableCors("ReglasCors")]
+        [HttpPut]
+        [Route("Editar")]
+        public IActionResult Editar([FromBody] Cliente objeto)
+        {
+            Cliente oCliente = _prestamosContext.Clientes.Find(objeto.IdCliente);
+
+            if (oCliente == null)
+            {
+                return BadRequest("Este cliente no existe");
+            }
+
+            try
+            {
+                oCliente.Nombre = objeto.Nombre is null ? oCliente.Nombre : objeto.Nombre;
+                oCliente.Cedula = objeto.Cedula is null ? oCliente.Cedula : objeto.Cedula;
+                oCliente.NumeroCuenta = objeto.NumeroCuenta is null ? oCliente.NumeroCuenta : objeto.NumeroCuenta;
+
+                _prestamosContext.Clientes.Update(oCliente);
+                _prestamosContext.SaveChanges();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
             }
             catch (Exception ex)
             {
