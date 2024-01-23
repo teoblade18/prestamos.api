@@ -7,11 +7,11 @@ namespace prestamos.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InteresController : ControllerBase
+    public class PrestamoController : ControllerBase
     {
         public readonly ProyectoPrestamosContext _prestamosContext;
 
-        public InteresController(ProyectoPrestamosContext _context)
+        public PrestamoController(ProyectoPrestamosContext _context)
         {
             _prestamosContext = _context;
         }

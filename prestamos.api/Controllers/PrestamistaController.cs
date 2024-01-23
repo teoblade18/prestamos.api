@@ -20,23 +20,6 @@ namespace prestamos.api.Controllers
             _prestamosContext = _context;
         }
 
-        [HttpGet]
-        [Route("Lista")]
-        [EnableCors("ReglasCors")]
-        public IActionResult Lista() {
-            List<Prestamista> lista = new List<Prestamista>();
-
-            try
-            {
-                lista = _prestamosContext.Prestamistas.ToList();
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = lista });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = ex.Message, response = lista });
-            }
-        }
-
         [EnableCors("ReglasCors")]
         [HttpGet]
         [Route("Obtener/{idPrestamista}")]
