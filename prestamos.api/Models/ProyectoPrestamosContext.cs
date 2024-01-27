@@ -149,6 +149,10 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("tipoIntereses");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(10)
+                .HasColumnName("estado")
+                .HasDefaultValue("Abonado");
 
             entity.HasOne(d => d.oCliente).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.IdCliente)

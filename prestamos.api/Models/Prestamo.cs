@@ -26,6 +26,8 @@ public partial class Prestamo
 
     public DateOnly? FechaPago { get; set; }
 
+    public string? Estado { get; set; }
+
     public virtual Cliente? oCliente { get; set; }
 
     public virtual Prestamista? oPrestamista { get; set; }
