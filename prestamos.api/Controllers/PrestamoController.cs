@@ -54,5 +54,24 @@ namespace prestamos.api.Controllers
             }
         }
 
+        [EnableCors("ReglasCors")]
+        [HttpGet]
+        [Route("ConsultarPrestamosXPrestamista/{idPrestamista}")]
+        public IActionResult ConsultarPrestamosXPrestamista(int idPrestamista)
+        {
+            List<Prestamo> prestamos = new List<Prestamo>();
+
+            try
+            {
+                prestamos = _prestamosContext.Prestamos.Where(p => p.IdPrestamista == p.IdPrestamista).Include(c => c.oCliente).OrderBy(p => p.Estado).ToList();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = prestamos });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
+
     }
 }
