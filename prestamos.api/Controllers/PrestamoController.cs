@@ -36,5 +36,23 @@ namespace prestamos.api.Controllers
             }
         }
 
+        [EnableCors("ReglasCors")]
+        [HttpGet]
+        [Route("ConsultarNumeroPrestamosXCliente/{idCliente}")]
+        public IActionResult ConsultarNumeroPrestamosXCliente(int idCliente)
+        {
+            int numeroPrestamos;
+
+            try
+            {
+                numeroPrestamos = _prestamosContext.Prestamos.Where(p => p.IdCliente == idCliente).Count();
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = numeroPrestamos });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
+
     }
 }
