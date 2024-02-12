@@ -32,8 +32,7 @@ public partial class Prestamo
 
     public virtual Prestamista? oPrestamista { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<Interes> Intereses { get; set; } = new List<Interes>();
-    [JsonIgnore]
+
     public virtual ICollection<Abono> Abonos { get; set; } = new List<Abono>();
 }

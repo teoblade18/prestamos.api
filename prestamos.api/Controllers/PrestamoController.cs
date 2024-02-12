@@ -63,7 +63,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                prestamos = _prestamosContext.Prestamos.Where(p => p.IdPrestamista == p.IdPrestamista).Include(c => c.oCliente).OrderBy(p => p.Estado).ToList();
+                prestamos = _prestamosContext.Prestamos.Where(p => p.IdPrestamista == p.IdPrestamista).Include(c => c.oCliente).Include(a => a.Abonos).Include(i => i.Intereses).OrderBy(p => p.Estado).ToList();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = prestamos });
             }
