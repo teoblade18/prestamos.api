@@ -47,6 +47,8 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasForeignKey(d => d.IdPrestamo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Abonos__idPresta__0C85DE4D");
+
+            entity.ToTable("Abonos", tb => tb.HasTrigger("adiciona_abonos"));
         });
 
         modelBuilder.Entity<Cliente>(entity =>
@@ -99,6 +101,8 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasForeignKey(d => d.IdPrestamo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Intereses__idPre__0E6E26BF");
+
+            entity.ToTable("Intereses", tb => tb.HasTrigger("adiciona_interes"));
         });
 
         modelBuilder.Entity<Prestamista>(entity =>
