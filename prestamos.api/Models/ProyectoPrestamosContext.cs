@@ -167,6 +167,8 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasForeignKey(d => d.IdPrestamista)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Prestamos__idPre__114A936A");
+
+            entity.ToTable("Prestamos", tb => tb.HasTrigger("primer_intereres_prestamo"));
         });
 
         modelBuilder.Entity<Usuario>(entity =>
