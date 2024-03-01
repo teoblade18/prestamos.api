@@ -14,6 +14,8 @@ public partial class Prestamo
 
     public DateOnly? FechaInicial { get; set; }
 
+    public DateOnly? FechaProximoPago { get; set; }
+
     public decimal? Porcentaje { get; set; }
 
     public string? TipoIntereses { get; set; }
