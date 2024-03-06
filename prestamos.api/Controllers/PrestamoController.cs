@@ -45,7 +45,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                numeroPrestamos = _prestamosContext.Prestamos.Where(p => p.IdCliente == idCliente).Count();
+                numeroPrestamos = _prestamosContext.Prestamos.Where(p => p.IdCliente == idCliente && (p.Estado == "Abonado" || p.Estado == "Impago")).Count();
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = numeroPrestamos });
             }
             catch (Exception ex)
