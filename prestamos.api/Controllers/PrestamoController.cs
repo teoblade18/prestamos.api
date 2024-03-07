@@ -63,13 +63,40 @@ namespace prestamos.api.Controllers
 
             try
             {
-                prestamos = _prestamosContext.Prestamos.Where(p => p.IdPrestamista == p.IdPrestamista && (p.Estado == "Abonado" || p.Estado == "Impago"))
+                prestamos = _prestamosContext.Prestamos.Where(p => p.IdPrestamista == idPrestamista && (p.Estado == "Abonado" || p.Estado == "Impago"))
                                                        .Include(c => c.oCliente)
                                                        .Include(a => a.Abonos)
                                                        .Include(i => i.Intereses)
                                                        .OrderByDescending(p => p.Estado).ToList();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = prestamos });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
+
+        [EnableCors("ReglasCors")]
+        [HttpPut]
+        [Route("Cancelar")]
+        public IActionResult Cancelar([FromBody] Prestamo objeto)
+        {
+            Prestamo oPrestamo = _prestamosContext.Prestamos.Find(objeto.IdPrestamo);
+
+            if (oPrestamo == null)
+            {
+                return BadRequest("Este préstamo no existe");
+            }
+
+            try
+            {
+                oPrestamo.Estado = "Cancelado";
+
+                _prestamosContext.Prestamos.Update(oPrestamo);
+                _prestamosContext.SaveChanges();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
             }
             catch (Exception ex)
             {
