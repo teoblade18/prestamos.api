@@ -139,7 +139,7 @@ namespace prestamos.api.Controllers
                 _prestamosContext.Prestamistas.Update(oPrestamista);
                 _prestamosContext.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista actualizado" });
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
             }
             catch (Exception ex)
             {
