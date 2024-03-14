@@ -68,7 +68,7 @@ namespace prestamos.api.Controllers
                     {
                         Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
 
-                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista });
+                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista.IdPrestamista });
                     }
                     else
                     {
@@ -82,6 +82,36 @@ namespace prestamos.api.Controllers
             }
 
             return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "No se concluyó la consulta" });
+        }
+
+        [EnableCors("ReglasCors")]
+        [HttpGet]
+        [Route("ConsultarCapital/{idPrestamista}")]
+        public IActionResult ConsultarCapital(int idPrestamista)
+        {
+            try
+            {
+                Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamista);
+
+                if (oPrestamista == null)
+                {
+                    return BadRequest("Prestamista no encontrado");
+                }
+
+                try
+                {
+                    oPrestamista = _prestamosContext.Prestamistas.Where(p => p.IdPrestamista == idPrestamista).FirstOrDefault();
+                    return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista.Capital });
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message, response = oPrestamista });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
         }
 
         [EnableCors("ReglasCors")]
@@ -110,7 +140,7 @@ namespace prestamos.api.Controllers
 
                 oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
 
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista registrado", response = oPrestamista });
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista registrado", response = oPrestamista.IdPrestamista });
             }
             catch (Exception ex)
             {
