@@ -5,30 +5,17 @@ namespace prestamos.api.Util
 {
     public class Encrypter
     {
-        public string Encrypt(string text, string key)
+        public string Encrypt(string password)
         {
-            using (Aes aesAlg = Aes.Create())
+            using (SHA256 sha256 = SHA256.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(key);
-                aesAlg.Mode = CipherMode.CBC;
-
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                byte[] encrypted;
-
-                using (var msEncrypt = new System.IO.MemoryStream())
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
                 {
-                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (var swEncrypt = new System.IO.StreamWriter(csEncrypt))
-                        {
-                            swEncrypt.Write(text);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
+                    builder.Append(bytes[i].ToString("x2"));
                 }
-
-                return Convert.ToBase64String(encrypted);
+                return builder.ToString();
             }
         }
 
@@ -38,7 +25,7 @@ namespace prestamos.api.Util
 
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(key);
+                aesAlg.Key = Encoding.UTF8.GetBytes(PadRight(key, 16));
                 aesAlg.Mode = CipherMode.CBC;
                 aesAlg.IV = cipherBytes.Take(16).ToArray(); // Extract IV from cipher bytes
 
@@ -54,6 +41,18 @@ namespace prestamos.api.Util
                         }
                     }
                 }
+            }
+        }
+
+        string PadRight(string text, int length)
+        {
+            if (text.Length >= length)
+            {
+                return text.Substring(0, length);
+            }
+            else
+            {
+                return text.PadRight(length, '\0');
             }
         }
     }
