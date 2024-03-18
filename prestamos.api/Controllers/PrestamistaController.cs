@@ -54,33 +54,31 @@ namespace prestamos.api.Controllers
                 {
                     //Se valida que el email exista
                     oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == objeto.Email);
+                }
+                
+                if (oUsuario == null)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Usuario/Email no existe"});
+                }
 
-                    if (oUsuario == null)
-                    {
-                        return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Usuario/Email no existe"});
-                    }
+                string passComparacion = encrypter.Encrypt(objeto.Contraseña);
 
-                    string passComparacion = encrypter.Encrypt(objeto.Contraseña);
+                //Se valida que la contraseña sea correcta
+                if (oUsuario.Contraseña == encrypter.Encrypt(objeto.Contraseña))
+                {
+                    Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
 
-                    //Se valida que la contraseña sea correcta
-                    if (oUsuario.Contraseña == encrypter.Encrypt(objeto.Contraseña))
-                    {
-                        Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
-
-                        return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista.IdPrestamista });
-                    }
-                    else
-                    {
-                        return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Contraseña incorrecta"});
-                    }
+                    return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista.IdPrestamista });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Contraseña incorrecta"});
                 }
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
-
-            return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "No se concluyó la consulta" });
         }
 
         [EnableCors("ReglasCors")]
