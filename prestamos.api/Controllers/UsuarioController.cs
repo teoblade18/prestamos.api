@@ -27,7 +27,7 @@ namespace prestamos.api.Controllers
 
             if(oUsuario == null)
             {
-                return BadRequest("Este usuario no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este usuario no existe" });
             }
 
             try
@@ -37,7 +37,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = ex.Message, response = oUsuario });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message, response = oUsuario });
             }
         }
 
@@ -50,14 +50,14 @@ namespace prestamos.api.Controllers
 
             if (oUsuario != null)
             {
-                return BadRequest("Este nombre de usuario ya existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este nombre de usuario ya existe" });
             }
 
             oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == objeto.Email);
 
             if (oUsuario != null)
             {
-                return BadRequest("Este Email ya fue registrado");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este Email ya fue registrado" });
             }
 
             try
@@ -69,7 +69,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
 
@@ -82,21 +82,21 @@ namespace prestamos.api.Controllers
 
             if(oUsuario == null)
             {
-                return BadRequest("Este Usuario no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este Usuario no existe" });
             }
 
             oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == objeto.NombreUsuario);
 
             if (oUsuario != null)
             {
-                return BadRequest("Este nombre de usuario ya existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este nombre de usuario ya existe" });
             }
 
             oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == objeto.Email);
 
             if (oUsuario != null)
             {
-                return BadRequest("Este Email ya fue registrado");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este Email ya fue registrado" });
             }
 
             try
@@ -112,7 +112,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
 
@@ -125,7 +125,7 @@ namespace prestamos.api.Controllers
 
             if (oUsuario == null)
             {
-                return BadRequest("Este usuario no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este usuario no existe" });
             }
 
             try
@@ -137,7 +137,7 @@ namespace prestamos.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = ex.Message });
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
             }
         }
     }

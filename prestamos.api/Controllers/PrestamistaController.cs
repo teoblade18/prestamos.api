@@ -25,7 +25,7 @@ namespace prestamos.api.Controllers
 
             if(oPrestamista == null)
             {
-                return BadRequest("Prestamista no encontrado");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Prestamista no encontrado"});
             }
 
             try
@@ -92,7 +92,7 @@ namespace prestamos.api.Controllers
 
                 if (oPrestamista == null)
                 {
-                    return BadRequest("Prestamista no encontrado");
+                    return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Prestamista no encontrado" });
                 }
 
                 try
@@ -121,14 +121,14 @@ namespace prestamos.api.Controllers
 
             if (oPrestamista != null)
             {
-                return BadRequest("Nombre usuario ya existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Nombre usuario ya existe" });
             }
 
             oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
 
             if (oPrestamista != null)
             {
-                return BadRequest("Email ya existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Email ya existe" });
             }
 
             try
@@ -140,7 +140,7 @@ namespace prestamos.api.Controllers
 
                 oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == objeto.oUsuario.Email);
 
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista registrado", response = oPrestamista.IdPrestamista });
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista.IdPrestamista });
             }
             catch (Exception ex)
             {
@@ -157,7 +157,7 @@ namespace prestamos.api.Controllers
 
             if(oPrestamista == null)
             {
-                return BadRequest("Este prestamista no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este prestamista no existe" });
             }
 
             try
@@ -186,7 +186,7 @@ namespace prestamos.api.Controllers
 
             if (oPrestamista == null)
             {
-                return BadRequest("Este prestamista no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este prestamista no existe" });
             }
 
             try
@@ -194,7 +194,7 @@ namespace prestamos.api.Controllers
                 _prestamosContext.Prestamistas.Remove(oPrestamista);
                 _prestamosContext.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Prestamista eliminado" });
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
             }
             catch (Exception ex)
             {

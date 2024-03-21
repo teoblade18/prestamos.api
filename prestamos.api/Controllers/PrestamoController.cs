@@ -86,7 +86,7 @@ namespace prestamos.api.Controllers
 
             if (oPrestamo == null)
             {
-                return BadRequest("Este préstamo no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este préstamo no existe" });
             }
 
             try

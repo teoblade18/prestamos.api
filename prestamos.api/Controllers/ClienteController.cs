@@ -34,7 +34,7 @@ namespace prestamos.api.Controllers
 
                 Cliente oCliente = _prestamosContext.Clientes.Find(objeto.IdCliente);
 
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Cliente registrado", response = oCliente });
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oCliente });
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace prestamos.api.Controllers
 
             if (oCliente == null)
             {
-                return BadRequest("Este cliente no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este cliente no existe" });
             }
 
             try
@@ -104,7 +104,7 @@ namespace prestamos.api.Controllers
 
             if (oCliente == null)
             {
-                return BadRequest("Este cliente no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este cliente no existe" });
             }
 
             try

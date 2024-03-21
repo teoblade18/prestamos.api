@@ -45,7 +45,7 @@ namespace prestamos.api.Controllers
 
             if (oInteres == null)
             {
-                return BadRequest("Este interés no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este interés no existe" });
             }
 
             try

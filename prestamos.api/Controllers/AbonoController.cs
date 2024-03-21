@@ -45,7 +45,7 @@ namespace prestamos.api.Controllers
 
             if (oAbono == null)
             {
-                return BadRequest("Este abono no existe");
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este abono no existe" });
             }
 
             try
