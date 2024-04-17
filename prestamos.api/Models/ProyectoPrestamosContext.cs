@@ -137,6 +137,7 @@ public partial class ProyectoPrestamosContext : DbContext
                 .HasColumnType("numeric(18, 0)")
                 .HasColumnName("diaCorte");
             entity.Property(e => e.FechaInicial).HasColumnName("fechaInicial");
+            entity.Property(e => e.FechaFinal).HasColumnName("fechaFinal");
             entity.Property(e => e.FechaProximoPago).HasColumnName("fechaProximoPago");
             entity.Property(e => e.FechaPago).HasColumnName("fechaPago");
             entity.Property(e => e.IdCliente).HasColumnName("idCliente");

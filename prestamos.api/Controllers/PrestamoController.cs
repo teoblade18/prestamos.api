@@ -78,6 +78,68 @@ namespace prestamos.api.Controllers
         }
 
         [EnableCors("ReglasCors")]
+        [HttpGet]
+        [Route("ConsultarHistorialPrestamos/{idPrestamista}")]
+        public IActionResult ConsultarHistorialPrestamos(int idPrestamista)
+        {
+            List<HistorialPrestamo> historialprestamos = new List<HistorialPrestamo>();
+
+            try
+            {
+                // Consultar los préstamos del prestamista incluyendo los abonos e intereses relacionados
+                var prestamos = _prestamosContext.Prestamos
+                    .Where(p => p.IdPrestamista == idPrestamista)
+                    .Include(c => c.oCliente)
+                    .Include(a => a.Abonos)
+                    .Include(i => i.Intereses)
+                    .OrderByDescending(p => p.Estado)
+                    .ToList();
+
+                // Calcular los totales y la deuda actual para cada préstamo
+                foreach (var prestamo in prestamos)
+                {
+                    int totalAbonos = (int)(prestamo.Abonos.Sum(a => a.Valor ?? 0));
+                    int totalIntereses = (int)(prestamo.Intereses.Sum(i => i.Valor ?? 0));
+                    int deudaActual = (int)(prestamo.MontoInicial + totalIntereses - totalAbonos);
+
+                    // Crear un objeto HistorialPrestamo con los datos del préstamo y los cálculos realizados
+                    var historialPrestamo = new HistorialPrestamo
+                    {
+                        IdPrestamo = prestamo.IdPrestamo,
+                        IdCliente = prestamo.IdCliente,
+                        IdPrestamista = prestamo.IdPrestamista,
+                        FechaInicial = prestamo.FechaInicial,
+                        FechaFinal = prestamo.FechaFinal,
+                        FechaProximoPago = prestamo.FechaProximoPago,
+                        Porcentaje = prestamo.Porcentaje,
+                        TipoIntereses = prestamo.TipoIntereses,
+                        DiaCorte = prestamo.DiaCorte,
+                        MontoInicial = prestamo.MontoInicial,
+                        MontoReal = prestamo.MontoReal,
+                        FechaPago = prestamo.FechaPago,
+                        Estado = prestamo.Estado,
+                        oCliente = prestamo.oCliente,
+                        oPrestamista = prestamo.oPrestamista,
+                        Intereses = prestamo.Intereses,
+                        Abonos = prestamo.Abonos,
+                        TotalAbonos = totalAbonos,
+                        TotalIntereses = totalIntereses,
+                        DeudaActual = deudaActual
+                    };
+
+                    // Agregar el objeto HistorialPrestamo a la lista
+                    historialprestamos.Add(historialPrestamo);
+                }
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = historialprestamos });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = ex.Message });
+            }
+        }
+
+        [EnableCors("ReglasCors")]
         [HttpPut]
         [Route("Cancelar")]
         public IActionResult Cancelar([FromBody] Prestamo objeto)
@@ -92,6 +154,7 @@ namespace prestamos.api.Controllers
             try
             {
                 oPrestamo.Estado = "Cancelado";
+                oPrestamo.FechaFinal = DateOnly.FromDateTime(DateTime.Today);
 
                 _prestamosContext.Prestamos.Update(oPrestamo);
                 _prestamosContext.SaveChanges();

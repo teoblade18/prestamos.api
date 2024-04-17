@@ -13,6 +13,7 @@ public partial class Prestamo
     public int? IdPrestamista { get; set; }
 
     public DateOnly? FechaInicial { get; set; }
+    public DateOnly? FechaFinal { get; set; }
 
     public DateOnly? FechaProximoPago { get; set; }
 
