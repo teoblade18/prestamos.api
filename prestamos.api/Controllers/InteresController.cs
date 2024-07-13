@@ -20,12 +20,12 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("Guardar")]
-        public IActionResult Guardar([FromBody] Interes objeto)
+        public IActionResult Guardar([FromBody] Interes interesGuardar)
         {
             try
             {
 
-                _prestamosContext.Intereses.Add(objeto);
+                _prestamosContext.Intereses.Add(interesGuardar);
                 _prestamosContext.SaveChanges();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
@@ -39,9 +39,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpDelete]
         [Route("Eliminar/{idInteres}")]
-        public IActionResult Eliminar(int idInteres)
+        public IActionResult Eliminar(int idInteresEliminar)
         {
-            Interes oInteres = _prestamosContext.Intereses.Find(idInteres);
+            Interes oInteres = _prestamosContext.Intereses.Find(idInteresEliminar);
 
             if (oInteres == null)
             {

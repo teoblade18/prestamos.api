@@ -21,9 +21,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpGet]
         [Route("Obtener/{idUsuario}")]
-        public IActionResult Obtener(int idUsuario)
+        public IActionResult Obtener(int idUsuarioObtener)
         {
-            Usuario oUsuario = _prestamosContext.Usuarios.Find(idUsuario);
+            Usuario oUsuario = _prestamosContext.Usuarios.Find(idUsuarioObtener);
 
             if(oUsuario == null)
             {
@@ -32,7 +32,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                oUsuario = _prestamosContext.Usuarios.Where(u => u.IdUsuario == idUsuario).FirstOrDefault();
+                oUsuario = _prestamosContext.Usuarios.Where(u => u.IdUsuario == idUsuarioObtener).FirstOrDefault();
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oUsuario });
             }
             catch (Exception ex)
@@ -44,16 +44,16 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("Guardar")]
-        public IActionResult Guardar([FromBody] Usuario objeto)
+        public IActionResult Guardar([FromBody] Usuario usuarioGuardar)
         {
-            Usuario oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == objeto.NombreUsuario);
+            Usuario oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == usuarioGuardar.NombreUsuario);
 
             if (oUsuario != null)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este nombre de usuario ya existe" });
             }
 
-            oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == objeto.Email);
+            oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == usuarioGuardar.Email);
 
             if (oUsuario != null)
             {
@@ -62,7 +62,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                _prestamosContext.Usuarios.Add(objeto);
+                _prestamosContext.Usuarios.Add(usuarioGuardar);
                 _prestamosContext.SaveChanges();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "Usuario registrado"});
@@ -76,23 +76,23 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPut]
         [Route("Editar")]
-        public IActionResult Editar([FromBody] Usuario objeto)
+        public IActionResult Editar([FromBody] Usuario usuarioEditar)
         {
-            Usuario oUsuario = _prestamosContext.Usuarios.Find(objeto.IdUsuario);
+            Usuario oUsuario = _prestamosContext.Usuarios.Find(usuarioEditar.IdUsuario);
 
             if(oUsuario == null)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este Usuario no existe" });
             }
 
-            oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == objeto.NombreUsuario);
+            oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == usuarioEditar.NombreUsuario);
 
             if (oUsuario != null)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Este nombre de usuario ya existe" });
             }
 
-            oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == objeto.Email);
+            oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.Email == usuarioEditar.Email);
 
             if (oUsuario != null)
             {
@@ -101,9 +101,9 @@ namespace prestamos.api.Controllers
 
             try
             {
-                oUsuario.NombreUsuario = objeto.NombreUsuario is null ? oUsuario.NombreUsuario : objeto.NombreUsuario;
-                oUsuario.Contraseña = objeto.Contraseña is null ? oUsuario.Contraseña : objeto.Contraseña;
-                oUsuario.Email = objeto.Email is null ? oUsuario.Email : objeto.Email;
+                oUsuario.NombreUsuario = usuarioEditar.NombreUsuario is null ? oUsuario.NombreUsuario : usuarioEditar.NombreUsuario;
+                oUsuario.Contraseña = usuarioEditar.Contraseña is null ? oUsuario.Contraseña : usuarioEditar.Contraseña;
+                oUsuario.Email = usuarioEditar.Email is null ? oUsuario.Email : usuarioEditar.Email;
 
                 _prestamosContext.Usuarios.Update(oUsuario);
                 _prestamosContext.SaveChanges();
@@ -119,9 +119,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpDelete]
         [Route("Eliminar/{iUsuario}")]
-        public IActionResult Eliminar(string idUsuario)
+        public IActionResult Eliminar(string idUsuarioEliminar)
         {
-            Usuario oUsuario = _prestamosContext.Usuarios.Find(idUsuario);
+            Usuario oUsuario = _prestamosContext.Usuarios.Find(idUsuarioEliminar);
 
             if (oUsuario == null)
             {

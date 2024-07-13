@@ -21,18 +21,18 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("Guardar")]
-        public IActionResult Guardar([FromBody] Cliente objeto)
+        public IActionResult Guardar([FromBody] Cliente ClienteGuardar)
         {
             try
             {
-                Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(objeto.IdPrestamista);
+                Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(ClienteGuardar.IdPrestamista);
 
-                objeto.oPrestamista = oPrestamista;
+                ClienteGuardar.oPrestamista = oPrestamista;
 
-                _prestamosContext.Clientes.Add(objeto);
+                _prestamosContext.Clientes.Add(ClienteGuardar);
                 _prestamosContext.SaveChanges();
 
-                Cliente oCliente = _prestamosContext.Clientes.Find(objeto.IdCliente);
+                Cliente oCliente = _prestamosContext.Clientes.Find(ClienteGuardar.IdCliente);
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oCliente });
             }
@@ -69,9 +69,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPut]
         [Route("Editar")]
-        public IActionResult Editar([FromBody] Cliente objeto)
+        public IActionResult Editar([FromBody] Cliente clienteEditar)
         {
-            Cliente oCliente = _prestamosContext.Clientes.Find(objeto.IdCliente);
+            Cliente oCliente = _prestamosContext.Clientes.Find(clienteEditar.IdCliente);
 
             if (oCliente == null)
             {
@@ -80,9 +80,9 @@ namespace prestamos.api.Controllers
 
             try
             {
-                oCliente.Nombre = objeto.Nombre is null ? oCliente.Nombre : objeto.Nombre;
-                oCliente.Cedula = objeto.Cedula is null ? oCliente.Cedula : objeto.Cedula;
-                oCliente.NumeroCuenta = objeto.NumeroCuenta is null ? oCliente.NumeroCuenta : objeto.NumeroCuenta;
+                oCliente.Nombre = clienteEditar.Nombre is null ? oCliente.Nombre : clienteEditar.Nombre;
+                oCliente.Cedula = clienteEditar.Cedula is null ? oCliente.Cedula : clienteEditar.Cedula;
+                oCliente.NumeroCuenta = clienteEditar.NumeroCuenta is null ? oCliente.NumeroCuenta : clienteEditar.NumeroCuenta;
 
                 _prestamosContext.Clientes.Update(oCliente);
                 _prestamosContext.SaveChanges();
@@ -98,9 +98,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpDelete]
         [Route("Eliminar/{idCliente}")]
-        public IActionResult Eliminar(int idCliente)
+        public IActionResult Eliminar(int idClienteEliminar)
         {
-            Cliente oCliente = _prestamosContext.Clientes.Find(idCliente);
+            Cliente oCliente = _prestamosContext.Clientes.Find(idClienteEliminar);
 
             if (oCliente == null)
             {

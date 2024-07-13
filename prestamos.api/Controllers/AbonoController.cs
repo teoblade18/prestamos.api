@@ -20,12 +20,12 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("Guardar")]
-        public IActionResult Guardar([FromBody] Abono objeto)
+        public IActionResult Guardar([FromBody] Abono abonoGuardar)
         {
             try
             {
 
-                _prestamosContext.Abonos.Add(objeto);
+                _prestamosContext.Abonos.Add(abonoGuardar);
                 _prestamosContext.SaveChanges();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
@@ -39,9 +39,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpDelete]
         [Route("Eliminar/{idAbono}")]
-        public IActionResult Eliminar(int idAbono)
+        public IActionResult Eliminar(int idAbonoEliminar)
         {
-            Abono oAbono = _prestamosContext.Abonos.Find(idAbono);
+            Abono oAbono = _prestamosContext.Abonos.Find(idAbonoEliminar);
 
             if (oAbono == null)
             {

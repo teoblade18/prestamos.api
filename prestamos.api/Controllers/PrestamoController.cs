@@ -21,11 +21,11 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("Guardar")]
-        public IActionResult Guardar([FromBody] Prestamo objeto)
+        public IActionResult Guardar([FromBody] Prestamo prestamoGuardar)
         {
             try
             {
-                _prestamosContext.Prestamos.Add(objeto);
+                _prestamosContext.Prestamos.Add(prestamoGuardar);
                 _prestamosContext.SaveChanges();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
@@ -142,9 +142,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPut]
         [Route("Cancelar")]
-        public IActionResult Cancelar([FromBody] Prestamo objeto)
+        public IActionResult Cancelar([FromBody] Prestamo prestamoCancelar)
         {
-            Prestamo oPrestamo = _prestamosContext.Prestamos.Find(objeto.IdPrestamo);
+            Prestamo oPrestamo = _prestamosContext.Prestamos.Find(prestamoCancelar.IdPrestamo);
 
             if (oPrestamo == null)
             {
