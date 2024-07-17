@@ -83,7 +83,7 @@ namespace prestamos.api.Controllers
 
         [EnableCors("ReglasCors")]
         [HttpGet]
-        [Route("ConsultarCapital/{idPrestamista}")]
+        [Route("ConsultarCapitalXPrestamista/{idPrestamista}")]
         public IActionResult ConsultarCapitalXPrestamista(int idPrestamista)
         {
             try
