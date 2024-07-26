@@ -78,7 +78,7 @@ namespace prestamos.api.Controllers
             try
             {
                 var prestamos = ObtenerPrestamos(idPrestamista, false);
-                var historialprestamos = CrearHistorialPrestamos(prestamos);
+                var historialprestamos = ObtenerListaHistorialPrestamos(prestamos);
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = historialprestamos });
             }
             catch (Exception ex)
@@ -116,41 +116,13 @@ namespace prestamos.api.Controllers
         /// </summary>
         /// <param name="prestamos">Lista de préstamos del prestamista.</param>
         /// <returns>Lista de historial de préstamos con totales calculados y deuda actual.</returns>
-        private List<HistorialPrestamo> CrearHistorialPrestamos(List<Prestamo> prestamos)
+        private List<HistorialPrestamo> ObtenerListaHistorialPrestamos(List<Prestamo> prestamos)
         {
             var historialprestamos = new List<HistorialPrestamo>();
 
             foreach (var prestamo in prestamos)
             {
-                int totalAbonos = (int)(prestamo.Abonos.Sum(a => a.Valor ?? 0));
-                int totalIntereses = (int)(prestamo.Intereses.Sum(i => i.Valor ?? 0));
-                int deudaActual = (int)(prestamo.MontoInicial + totalIntereses - totalAbonos);
-
-                var historialPrestamo = new HistorialPrestamo
-                {
-                    IdPrestamo = prestamo.IdPrestamo,
-                    IdCliente = prestamo.IdCliente,
-                    IdPrestamista = prestamo.IdPrestamista,
-                    FechaInicial = prestamo.FechaInicial,
-                    FechaFinal = prestamo.FechaFinal,
-                    FechaProximoPago = prestamo.FechaProximoPago,
-                    Porcentaje = prestamo.Porcentaje,
-                    TipoIntereses = prestamo.TipoIntereses,
-                    DiaCorte = prestamo.DiaCorte,
-                    MontoInicial = prestamo.MontoInicial,
-                    MontoReal = prestamo.MontoReal,
-                    FechaPago = prestamo.FechaPago,
-                    Estado = prestamo.Estado,
-                    oCliente = prestamo.oCliente,
-                    oPrestamista = prestamo.oPrestamista,
-                    Intereses = prestamo.Intereses,
-                    Abonos = prestamo.Abonos,
-                    TotalAbonos = totalAbonos,
-                    TotalIntereses = totalIntereses,
-                    DeudaActual = deudaActual
-                };
-
-                historialprestamos.Add(historialPrestamo);
+                historialprestamos.Add(new HistorialPrestamo(prestamo));
             }
 
             return historialprestamos;
