@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using prestamos.api.Interfaces;
 using prestamos.api.Models;
-public partial class ProyectoPrestamosContext : DbContext
+public partial class ProyectoPrestamosContext : DbContext , IProyectoPrestamosContext
 {
     public ProyectoPrestamosContext()
     {

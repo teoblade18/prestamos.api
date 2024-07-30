@@ -3,7 +3,13 @@ using System.Text;
 
 namespace prestamos.api.Util
 {
-    public class Encrypter
+    public interface IEncrypter
+    {
+        string Encrypt(string password);
+        string Decrypt(string cipherText, string key);
+    }
+
+    public class Encrypter: IEncrypter
     {
         public string Encrypt(string password)
         {

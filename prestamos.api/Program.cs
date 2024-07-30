@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using prestamos.api.Interfaces;
 using prestamos.api.Models;
+using prestamos.api.Util;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IProyectoPrestamosContext, ProyectoPrestamosContext>();
+builder.Services.AddScoped<IEncrypter,  Encrypter>();
 
 builder.Services.AddDbContext<ProyectoPrestamosContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL")));
 

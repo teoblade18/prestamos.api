@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using prestamos.api.Util;
+using prestamos.api.Interfaces;
 
 namespace prestamos.api.Controllers
 {
@@ -9,16 +10,18 @@ namespace prestamos.api.Controllers
     [ApiController]
     public class PrestamistaController : ControllerBase
     {
-        public readonly ProyectoPrestamosContext _prestamosContext;
+        private readonly IProyectoPrestamosContext _prestamosContext;
+        private IEncrypter _encrypter;
 
-        public PrestamistaController(ProyectoPrestamosContext _context)
+        public PrestamistaController(IProyectoPrestamosContext _context, IEncrypter encrypter)
         {
             _prestamosContext = _context;
+            _encrypter = encrypter;
         }
 
         [EnableCors("ReglasCors")]
         [HttpGet]
-        [Route("Obtener/{idPrestamista}")]
+        [Route("Obtener/{idPrestamistaObtener}")]
         public IActionResult Obtener(int idPrestamistaObtener)
         {
             Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamistaObtener);
@@ -48,7 +51,6 @@ namespace prestamos.api.Controllers
             {
                 //Se valida que el nombre de usuario exista
                 Usuario oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == usuario.NombreUsuario);
-                Encrypter encrypter = new Encrypter();
 
                 if (oUsuario == null)
                 {
@@ -61,10 +63,10 @@ namespace prestamos.api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, new { mensaje = "Usuario/Email no existe"});
                 }
 
-                string passComparacion = encrypter.Encrypt(usuario.Contraseña);
+                string passComparacion = _encrypter.Encrypt(usuario.Contraseña);
 
                 //Se valida que la contraseña sea correcta
-                if (oUsuario.Contraseña == encrypter.Encrypt(usuario.Contraseña))
+                if (oUsuario.Contraseña == _encrypter.Encrypt(usuario.Contraseña))
                 {
                     Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
 
@@ -117,7 +119,6 @@ namespace prestamos.api.Controllers
         public IActionResult Guardar([FromBody] Prestamista prestamistaGuardar)
         {
             Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.NombreUsuario == prestamistaGuardar.oUsuario.NombreUsuario);
-            Encrypter encrypter = new Encrypter();
 
             //Se valida que el prestamista no exista ya.
             if (oPrestamista != null)
@@ -135,7 +136,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                prestamistaGuardar.oUsuario.Contraseña = encrypter.Encrypt(prestamistaGuardar.oUsuario.Contraseña);
+                prestamistaGuardar.oUsuario.Contraseña = _encrypter.Encrypt(prestamistaGuardar.oUsuario.Contraseña);
 
                 _prestamosContext.Prestamistas.Add(prestamistaGuardar);
                 _prestamosContext.SaveChanges();
