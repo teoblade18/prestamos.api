@@ -7,24 +7,20 @@
       "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:controllers\\prestamistacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\interfaces\\iusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:interfaces\\iusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\models\\proyectoprestamoscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:models\\proyectoprestamoscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\interfaces\\iprestamista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:interfaces\\iprestamista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\models\\prestamista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:models\\prestamista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\util\\encrypter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:util\\encrypter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|c:\\users\\mateo\\onedrive\\documentos\\github\\prestamos.api\\prestamos.api\\interfaces\\iproyectoprestamoscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B553521D-B9A5-49FD-B08E-8FF52775DA9A}|prestamos.api.csproj|solutionrelative:interfaces\\iproyectoprestamoscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,19 +30,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA1AAAA",
+              "Title": "IUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Interfaces\\IUsuario.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IUsuario.cs",
+              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Interfaces\\IUsuario.cs",
+              "RelativeToolTip": "Interfaces\\IUsuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T21:33:52.469Z",
+              "WhenOpened": "2024-07-31T21:30:34.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\Usuario.cs",
+              "RelativeToolTip": "Models\\Usuario.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T21:29:51.33Z",
               "EditorCaption": ""
             },
             {
@@ -57,61 +66,35 @@
               "RelativeDocumentMoniker": "Controllers\\PrestamistaController.cs",
               "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Controllers\\PrestamistaController.cs",
               "RelativeToolTip": "Controllers\\PrestamistaController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAjAAAA",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAIwBoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T21:24:59.847Z",
+              "WhenOpened": "2024-07-31T21:28:37.974Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Prestamista.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\Prestamista.cs",
-              "RelativeDocumentMoniker": "Models\\Prestamista.cs",
-              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\Prestamista.cs",
-              "RelativeToolTip": "Models\\Prestamista.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Title": "IPrestamista.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Interfaces\\IPrestamista.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IPrestamista.cs",
+              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Interfaces\\IPrestamista.cs",
+              "RelativeToolTip": "Interfaces\\IPrestamista.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAcAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T21:24:46.143Z",
+              "WhenOpened": "2024-07-31T21:27:43.816Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Encrypter.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Util\\Encrypter.cs",
-              "RelativeDocumentMoniker": "Util\\Encrypter.cs",
-              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Util\\Encrypter.cs",
-              "RelativeToolTip": "Util\\Encrypter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Title": "Prestamista.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\Prestamista.cs",
+              "RelativeDocumentMoniker": "Models\\Prestamista.cs",
+              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\Prestamista.cs",
+              "RelativeToolTip": "Models\\Prestamista.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T21:19:59.048Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProyectoPrestamosContext.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\ProyectoPrestamosContext.cs",
-              "RelativeDocumentMoniker": "Models\\ProyectoPrestamosContext.cs",
-              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Models\\ProyectoPrestamosContext.cs",
-              "RelativeToolTip": "Models\\ProyectoPrestamosContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T21:12:05.034Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IProyectoPrestamosContext.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Interfaces\\IProyectoPrestamosContext.cs",
-              "RelativeDocumentMoniker": "Interfaces\\IProyectoPrestamosContext.cs",
-              "ToolTip": "C:\\Users\\mateo\\OneDrive\\Documentos\\GitHub\\prestamos.api\\prestamos.api\\Interfaces\\IProyectoPrestamosContext.cs",
-              "RelativeToolTip": "Interfaces\\IProyectoPrestamosContext.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T21:16:50.474Z",
+              "WhenOpened": "2024-07-30T21:24:46.143Z",
               "EditorCaption": ""
             }
           ]

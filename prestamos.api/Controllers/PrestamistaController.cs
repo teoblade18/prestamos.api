@@ -24,7 +24,7 @@ namespace prestamos.api.Controllers
         [Route("Obtener/{idPrestamistaObtener}")]
         public IActionResult Obtener(int idPrestamistaObtener)
         {
-            Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamistaObtener);
+            IPrestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamistaObtener);
 
             if(oPrestamista == null)
             {
@@ -45,12 +45,12 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("ConsultarXUsuario")]
-        public IActionResult ConsultarXUsuario([FromBody] Usuario usuario)
+        public IActionResult ConsultarXUsuario([FromBody] IUsuario usuario)
         {
             try
             {
                 //Se valida que el nombre de usuario exista
-                Usuario oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == usuario.NombreUsuario);
+                IUsuario oUsuario = _prestamosContext.Usuarios.FirstOrDefault(u => u.NombreUsuario == usuario.NombreUsuario);
 
                 if (oUsuario == null)
                 {
@@ -68,7 +68,7 @@ namespace prestamos.api.Controllers
                 //Se valida que la contraseña sea correcta
                 if (oUsuario.Contraseña == _encrypter.Encrypt(usuario.Contraseña))
                 {
-                    Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
+                    IPrestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.IdUsuario == oUsuario.IdUsuario);
 
                     return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok", response = oPrestamista.IdPrestamista });
                 }
@@ -90,7 +90,7 @@ namespace prestamos.api.Controllers
         {
             try
             {
-                Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamista);
+                IPrestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamista);
 
                 if (oPrestamista == null)
                 {
@@ -116,9 +116,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPost]
         [Route("Guardar")]
-        public IActionResult Guardar([FromBody] Prestamista prestamistaGuardar)
+        public IActionResult Guardar([FromBody] IPrestamista prestamistaGuardar)
         {
-            Prestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.NombreUsuario == prestamistaGuardar.oUsuario.NombreUsuario);
+            IPrestamista oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.NombreUsuario == prestamistaGuardar.oUsuario.NombreUsuario);
 
             //Se valida que el prestamista no exista ya.
             if (oPrestamista != null)
@@ -138,7 +138,7 @@ namespace prestamos.api.Controllers
             {
                 prestamistaGuardar.oUsuario.Contraseña = _encrypter.Encrypt(prestamistaGuardar.oUsuario.Contraseña);
 
-                _prestamosContext.Prestamistas.Add(prestamistaGuardar);
+                _prestamosContext.Prestamistas.Add((Prestamista)prestamistaGuardar);
                 _prestamosContext.SaveChanges();
 
                 oPrestamista = _prestamosContext.Prestamistas.FirstOrDefault(u => u.oUsuario.Email == prestamistaGuardar.oUsuario.Email);
@@ -154,9 +154,9 @@ namespace prestamos.api.Controllers
         [EnableCors("ReglasCors")]
         [HttpPut]
         [Route("Editar")]
-        public IActionResult Editar([FromBody] Prestamista prestamistaEditar)
+        public IActionResult Editar([FromBody] IPrestamista prestamistaEditar)
         {
-            Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(prestamistaEditar.IdPrestamista);
+            IPrestamista oPrestamista = _prestamosContext.Prestamistas.Find(prestamistaEditar.IdPrestamista);
 
             if(oPrestamista == null)
             {
@@ -169,7 +169,7 @@ namespace prestamos.api.Controllers
                 oPrestamista.Capital = prestamistaEditar.Capital is null ? oPrestamista.Capital : prestamistaEditar.Capital;
                 oPrestamista.NumeroCuenta = prestamistaEditar.NumeroCuenta is null ? oPrestamista.NumeroCuenta : prestamistaEditar.NumeroCuenta;
 
-                _prestamosContext.Prestamistas.Update(oPrestamista);
+                _prestamosContext.Prestamistas.Update((Prestamista)oPrestamista);
                 _prestamosContext.SaveChanges();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
@@ -185,7 +185,7 @@ namespace prestamos.api.Controllers
         [Route("Eliminar/{idPrestamista}")]
         public IActionResult Eliminar(String idPrestamistaEliminar)
         {
-            Prestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamistaEliminar);
+            IPrestamista oPrestamista = _prestamosContext.Prestamistas.Find(idPrestamistaEliminar);
 
             if (oPrestamista == null)
             {
@@ -194,7 +194,7 @@ namespace prestamos.api.Controllers
 
             try
             {
-                _prestamosContext.Prestamistas.Remove(oPrestamista);
+                _prestamosContext.Prestamistas.Remove((Prestamista)oPrestamista);
                 _prestamosContext.SaveChanges();
 
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });

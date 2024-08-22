@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using prestamos.api.Models;
+using prestamos.api.Interfaces;
 
-public partial class Usuario
+public partial class Usuario : IUsuario
 {
     public int IdUsuario { get; set; }
 

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using prestamos.api.Interfaces;
 using prestamos.api.Models;
 
-public partial class Prestamista
+public partial class Prestamista : IPrestamista
 {
     public int IdPrestamista { get; set; }
 
